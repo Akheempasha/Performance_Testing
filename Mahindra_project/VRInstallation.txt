@@ -1,0 +1,35 @@
+1.global.h
+
+char *thinkTimeStr;
+int thinkTime;
+char *pacingStr;
+int pacing;
+
+
+
+2.int()
+
+// Connect to VTS
+lrvtc_connect("10.218.4.172", 8888, VTOPT_KEEP_ALIVE);
+
+lrvtc_query_column("PROD_AAC_CO03_new_demo", 1); // row 1 change the scriptname according to ur script
+thinkTimeStr = lr_eval_string("{PROD_AAC_CO03_new_demo}");//returns the paramter value in string
+thinkTime = atoi(thinkTimeStr); // Convert to int
+//lr_output_message("Parsed think time (int) = %d", thinkTime);
+
+//lr_think_time(thinkTime);
+
+lrvtc_query_column("PROD_AAC_CO03_new_demo", 2); // row 2
+pacingStr = lr_eval_string("{PROD_AAC_CO03_new_demo}");
+pacing = atoi(pacingStr); // Convert to int
+//lr_output_message("Parsed pacing (int) = %d", pacing);
+
+
+
+3. Replace thinkTime with the action tt and pacing with the pacing variable.
+
+
+4. end()
+
+lrvtc_disconnect();
+
